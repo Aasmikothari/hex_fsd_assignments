@@ -1,0 +1,84 @@
+The MVP:
+
+1. JWT-Based Login and Role-Based Access
+Secure login for Patient, Doctor, and Admin
+
+Different dashboards and access levels
+
+JWT token sent on login and used for all future requests
+
+2. Patient Registration & Profile Management
+Patients can:
+
+Register with basic info (name, DOB, gender, contact)
+
+Update personal details
+
+See their account info in dashboard
+
+3. Doctor Profile Management (Admin)
+Admin can:
+
+Add/update/delete doctor records
+
+Assign them to departments
+
+Include details like specialization, experience, etc.
+
+4. Department Management (Admin)
+Admin can:
+
+Manage list of medical departments (Cardiology, Neurology, etc.)
+
+Assign doctors to specific departments
+
+5. Appointment Booking (Patient)
+Patients can:
+
+Search for doctors by department
+
+Choose a preferred time and date
+
+Submit a brief description of symptoms
+
+6. Doctor Appointment Dashboard
+Doctors can:
+
+View upcoming appointments
+
+Accept or reject an appointment
+
+See basic patient info (name, contact, symptoms)
+
+7. Consultation Entry (Doctor)
+Doctors can:
+
+Record symptoms, diagnosis, and treatment plan
+
+Write a prescription
+
+Recommend medical tests
+
+8. Medical History View (Patient)
+Patients can:
+
+See a history of past consultations
+
+View details like diagnosis, prescription, tests recommended
+
+9. Prescription & Test Tracking (Linked to Consultation)
+Each consultation stores:
+
+Prescribed medicines with dosage and timing
+
+List of medical tests with doctor’s notes
+
+10. Admin View of All Appointments
+Admin can:
+
+View all appointments in tabular format
+
+Filter by doctor, date, status
+
+Reschedule or cancel as needed
+
