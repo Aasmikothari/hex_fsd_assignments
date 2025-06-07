@@ -7,18 +7,13 @@ import org.springframework.stereotype.Component;
 
 import com.casestudy.amazecare.model.Doctor;
 
-/**
- * DoctorDto exposes selected fields from the Doctor entity,
- * including the associated User's username.
- */
 @Component
 public class DoctorDto {
 
     private int id;
     private String name;
     private String username;
-
-    // === Getters and Setters ===
+    private String departmentName;
 
     public int getId() {
         return id;
@@ -44,28 +39,27 @@ public class DoctorDto {
         this.username = username;
     }
 
-    /**
-     * Converts a list of Doctor entities into a list of DoctorDto objects.
-     * Only id, name, and linked user's username are included.
-     */
-    public List<DoctorDto> convertDoctorListToDto(List<Doctor> doctorList) {
-        List<DoctorDto> dtoList = new ArrayList<>();
+    public String getDepartmentName() {
+        return departmentName;
+    }
 
-        doctorList.forEach(doctor -> {
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    // Conversion method: List<Doctor> → List<DoctorDto>
+    public List<DoctorDto> convertDoctorToDto(List<Doctor> list) {
+        List<DoctorDto> listDto = new ArrayList<>();
+
+        list.stream().forEach(doc -> {
             DoctorDto dto = new DoctorDto();
-            dto.setId(doctor.getId());
-            dto.setName(doctor.getName());
-
-            // ✅ LMS-style: extract username from linked User
-            if (doctor.getUser() != null) {
-                dto.setUsername(doctor.getUser().getUsername());
-            } else {
-                dto.setUsername("N/A"); // Optional: fallback
-            }
-
-            dtoList.add(dto);
+            dto.setId(doc.getId());
+            dto.setName(doc.getName());
+            dto.setUsername(doc.getUser().getUsername());
+            dto.setDepartmentName(doc.getDepartment().getName());
+            listDto.add(dto);
         });
 
-        return dtoList;
+        return listDto;
     }
 }
