@@ -23,9 +23,20 @@ public class Patient {
     private LocalDate dob;
     private String password;
     
+    @OneToOne
+    private User user;
+    
     //Getters and Setters
 
-    public int getId() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getId() {
         return id;
     }
 
