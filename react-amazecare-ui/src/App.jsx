@@ -1,23 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Concepts from './components/Concepts'
-import Post from './components/Post'
-import AddPost from './components/AddPost'
-import FetchPost from './components/FetchPost'
-import Login from './components/Login'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import DoctorDashboard from "./components/doctor/DoctorDashboard";
+// For patient & admin dashboard, create these components similarly if needed
+// import PatientDashboard from "./components/patient/PatientDashboard";
+// import AdminDashboard from "./components/admin/AdminDashboard";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <Login />
-      </div>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
+        {/* Future routes if needed */}
+        {/* <Route path="/patient/dashboard" element={<PatientDashboard />} /> */}
+        {/* <Route path="/admin/dashboard" element={<AdminDashboard />} /> */}
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

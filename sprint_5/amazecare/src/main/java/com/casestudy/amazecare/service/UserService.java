@@ -66,4 +66,8 @@ public class UserService {
                 throw new RuntimeException("Unknown role: " + user.getRole());
         }
     }
+    
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

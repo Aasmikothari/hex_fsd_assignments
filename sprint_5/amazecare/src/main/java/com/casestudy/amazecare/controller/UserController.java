@@ -35,17 +35,23 @@ public class UserController {
     }
 
     /*
-     * AIM    : Generate JWT Token
+     * AIM    : Generate JWT Token and return User Role
      * METHOD : GET
      * PATH   : /api/user/token
-     * RESPONSE : JWT Token string
+     * RESPONSE : JWT Token string + User Role
      */
     @GetMapping("/token")
     public ResponseEntity<?> getToken(Principal principal) {
         try {
             String token = jwtUtil.createToken(principal.getName());
+
+            // Get user details from DB
+            User user = userService.getUserByUsername(principal.getName());
+
             Map<String, Object> map = new HashMap<>();
             map.put("token", token);
+            map.put("role", user.getRole()); // Adding role here
+
             return ResponseEntity.status(HttpStatus.OK).body(map);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
