@@ -1,24 +1,27 @@
-import { useState } from "react";
+// src/components/doctor/DoctorNavbar.jsx
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteUserDetails } from "../../store/actions/UserAction";
 
 function DoctorNavbar() {
-    const [name] = useState(localStorage.getItem('name'));
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const name = localStorage.getItem("name");
 
-    const logout = () => {
-        localStorage.clear();
-        navigate("/");
-    }
+  const logout = () => {
+    localStorage.clear();
+    deleteUserDetails(dispatch);
+    navigate("/");
+  };
 
-    return (
-        <nav className="navbar navbar-light bg-light justify-content-between">
-            <div className="navbar-brand">AmazeCare Doctor</div>
-            <div className="form-inline mt-2 mb-4">
-                Welcome {name} &nbsp;&nbsp;&nbsp;
-                <button className="btn btn-outline-danger" onClick={logout}>Logout</button>
-            </div>
-        </nav>
-    )
+  return (
+    <nav className="navbar navbar-light bg-light px-6">
+      <div className="d-flex align-items-center ms-auto">
+        <span className="me-3">Welcome {name}</span>
+        <button className="btn btn-outline-danger" onClick={logout}>Logout</button>
+      </div>
+    </nav>
+  );
 }
 
 export default DoctorNavbar;
